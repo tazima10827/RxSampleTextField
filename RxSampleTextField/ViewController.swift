@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var characterCountUserIDLabel: UILabel!
     @IBOutlet weak var inputPasswordTextField:UITextField!
     @IBOutlet weak var mistakPasswordLabel: UILabel!
-    @IBOutlet weak var characterCountPasswordLabel: UILabel!
     
     
     @IBOutlet weak var signUpButton: UIButton!
