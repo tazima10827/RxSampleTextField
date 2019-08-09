@@ -43,11 +43,7 @@ class ViewController: UIViewController {
             self.signUpButton.isEnabled = (inputTextLength > 0)
             guard let isMistakUserIDLabel = text?.isAlphanumeric() else { return }
             if inputTextLength != 0{
-                if isMistakUserIDLabel {
-                    self.mistakUserIDLabel.isHidden = true
-                }else{
-                    self.mistakUserIDLabel.isHidden = false
-                }
+                self.mistakUserIDLabel.isHidden = isMistakUserIDLabel
             } else {
                 self.mistakUserIDLabel.isHidden = true
             }
@@ -56,17 +52,9 @@ class ViewController: UIViewController {
         
         
         inputPasswordTextField.rx.text.subscribe(onNext: { text in
-            if let text = text,text.count >= self.maxLength{
-                self.inputPasswordTextField.text = text.prefix(self.maxLength).description
-            }
             let inputTextLength = self.inputPasswordTextField.text?.count ?? 0
-            
-            if (text?.isCharacterString(text:text!))!{
-                self.mistakPasswordLabel.isHidden = false
-            }else{
-                self.mistakPasswordLabel.isHidden = true
-            }
-            
+            guard let isMistakPassworrdLabal = text?.isCharacterString(text:text!) else { return }
+            self.mistakPasswordLabel.isHidden = !isMistakPassworrdLabal
             self.signUpButton.isEnabled = (inputTextLength <= self.minimumTextLength)
             
         })
